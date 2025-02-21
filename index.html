@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+
+    <div class="container">
+    <h1>Generate Password</h1>
+    <div class="display" >
+        <input type="text" getPass() id="password"placeholder="Password">
+    </div>
+
+    <button onclick="getPass()">Generate Password</button>
+    <button onclick="copyPass()">Copy Pass</button>
+</div>
+
+    <script>
+        const passwordBox = document.getElementById("password");
+        const leng = 12;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        const digit = "0987654321";
+        const symbols = "@#$%^&*_";
+
+        const allChars = upperCase+lowerCase+digit+symbols;
+
+        function getPass(){
+            let password = "";
+            password +=  upperCase[Math.floor(Math.random() * upperCase.length)];
+            password +=  lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            password +=  digit[Math.floor(Math.random ()* digit.length)];
+            password +=  symbols[Math.floor(Math.random() * symbols.length)];
+
+            while(leng>password.length){
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+
+            }
+            passwordBox.value = password;
+
+        }
+
+        function copyPass(){
+            passwordBox.select();
+            document.execCommand("copy")
+        }
+    </script>
+    
+</body>
+</html>
